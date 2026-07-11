@@ -1,0 +1,73 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import "tailwindcss";
+
+@theme {
+  /* Calm Trust palette — blue authority + warm amber for "배움의 따뜻함" */
+  --color-ink-50: #f2f5fa;
+  --color-ink-100: #e2e8f2;
+  --color-ink-200: #c7d2e3;
+  --color-ink-300: #a2b2cc;
+  --color-ink-400: #7688a8;
+  --color-ink-500: #566a8c;
+  --color-ink-600: #405071;
+  --color-ink-700: #2f3c58;
+  --color-ink-800: #1f2941;
+  --color-ink-900: #141b2e;
+  --color-ink-950: #0b101d;
+
+  --color-ink: #141b2e;
+
+  --color-brand-50: #eaf0fd;
+  --color-brand-100: #d0defb;
+  --color-brand-200: #a6c0f7;
+  --color-brand-300: #7599f0;
+  --color-brand-400: #4b74e6;
+  --color-brand-500: #2c53d9;
+  --color-brand-600: #1e4fd6;
+  --color-brand-700: #1a3fac;
+  --color-brand-800: #1a3487;
+  --color-brand-900: #182e6c;
+  --color-brand: #1e4fd6;
+
+  --color-accent-50: #fdf3e8;
+  --color-accent-100: #fae2c2;
+  --color-accent-300: #f0b366;
+  --color-accent-400: #ec9d40;
+  --color-accent-500: #e3862a;
+  --color-accent-600: #c66c1e;
+  --color-accent-950: #3a2308;
+  --color-accent: #e3862a;
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-white text-ink-900 antialiased;
+    font-size: 16px;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+}
+
+@keyframes ly-aurora-a {
+  0%, 100% { transform: translate(28%, -22%) scale(1); opacity: 0.8; }
+  50%      { transform: translate(20%, -12%) scale(1.12); opacity: 0.95; }
+}
+@keyframes ly-aurora-b {
+  0%, 100% { transform: translate(-22%, 24%) scale(1); opacity: 0.65; }
+  50%      { transform: translate(-14%, 15%) scale(1.08); opacity: 0.85; }
+}
+.ly-aurora-a { animation: ly-aurora-a 20s ease-in-out infinite; }
+.ly-aurora-b { animation: ly-aurora-b 24s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ly-aurora-a, .ly-aurora-b {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
