@@ -3,12 +3,17 @@ import { ArrowRight, Check, GraduationCap, Hammer, LifeBuoy } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PageMeta } from "@/components/PageMeta";
 
 const PROCESS_STEPS = ["진단", "설계", "구축", "전수"];
 
 export function Services() {
   return (
     <>
+      <PageMeta
+        title="서비스 소개"
+        description="AI 활용 교육, 업무 자동화 컨설팅·구축, 구축 이후 유지관리까지 리영컴퍼니의 서비스를 소개합니다."
+      />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">서비스 소개</Badge>

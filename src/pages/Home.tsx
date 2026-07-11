@@ -1,11 +1,37 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, GraduationCap, Hammer, LifeBuoy } from "lucide-react";
+import { ArrowRight, Building2, GraduationCap, Hammer, Landmark, LifeBuoy, Store, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CountUp } from "@/components/CountUp";
+import { PageMeta } from "@/components/PageMeta";
 import { SITE } from "@/lib/site";
 import { STATS } from "@/lib/stats";
+import { GROWTH_STATS } from "@/lib/growth";
+
+const AUDIENCE_CARDS = [
+  {
+    icon: Store,
+    title: "소상공인 사장님",
+    desc: "AI로 홍보물·SNS를 직접 만들고 운영할 수 있도록 실습 위주로 가르쳐 드립니다.",
+    to: "/programs",
+    linkLabel: "교육 프로그램 보기",
+  },
+  {
+    icon: Building2,
+    title: "기업 담당자",
+    desc: "반복 업무를 진단하고, 우리 회사에 맞는 AI 자동화·홈페이지를 구축·전수합니다.",
+    to: "/organizations",
+    linkLabel: "기관·기업 안내 보기",
+  },
+  {
+    icon: Landmark,
+    title: "공공기관·지자체 담당자",
+    desc: "견적서·강의계획서·세금계산서 등 행정 서류까지 빠짐없이 챙겨 진행합니다.",
+    to: "/organizations",
+    linkLabel: "기관·기업 안내 보기",
+  },
+];
 
 const SERVICE_CARDS = [
   {
@@ -31,6 +57,10 @@ const SERVICE_CARDS = [
 export function Home() {
   return (
     <>
+      <PageMeta
+        title="AI로, 사장님이 직접 할 수 있게"
+        description="리영컴퍼니는 AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는 AI 경영컨설팅·교육 회사입니다."
+      />
       {/* 히어로 */}
       <section className="relative overflow-hidden bg-ink-950">
         <div className="ly-aurora-a pointer-events-none absolute -top-24 right-0 h-[32rem] w-[32rem] rounded-full bg-brand-500/40 blur-3xl" />
@@ -57,6 +87,30 @@ export function Home() {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* 고객 유형 분기 */}
+      <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">어떤 분이신가요?</h2>
+          <p className="mt-3 text-ink-500">찾으시는 내용으로 바로 안내해 드립니다.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {AUDIENCE_CARDS.map((a) => (
+            <Link key={a.title} to={a.to}>
+              <Card className="group h-full p-8 transition-shadow hover:shadow-xl">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand">
+                  <a.icon size={26} />
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-ink-900">{a.title}</h3>
+                <p className="text-[15px] leading-relaxed text-ink-500">{a.desc}</p>
+                <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:gap-2 transition-all">
+                  {a.linkLabel} <ArrowRight size={16} />
+                </span>
+              </Card>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -100,9 +154,23 @@ export function Home() {
               <br />
               지금까지 소상공인·기업·공공기관과 함께한 AI 교육·컨설팅 경험을 바탕으로 리영컴퍼니를 이끌고 있습니다.
             </p>
+            <Link to="/about" className="group mt-6 block">
+              <div className="flex items-center gap-4 rounded-2xl border-2 border-brand-100 bg-brand-50 px-5 py-4 transition-colors group-hover:border-brand-300">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-brand text-white">
+                  <TrendingUp size={24} />
+                </div>
+                <p className="text-left text-[15px] font-bold leading-snug text-ink-900">
+                  AI만으로 월 방문자{" "}
+                  <span className="text-xl font-black text-brand sm:text-2xl">
+                    {GROWTH_STATS.peakMonthly.toLocaleString()}명
+                  </span>{" "}
+                  사이트를 직접 키운 대표
+                </p>
+              </div>
+            </Link>
             <Link
               to="/about"
-              className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-2 transition-all"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-2 transition-all"
             >
               대표 스토리 보기 <ArrowRight size={16} />
             </Link>
@@ -112,6 +180,10 @@ export function Home() {
 
       {/* 실적 하이라이트 */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">숫자로 증명합니다</h2>
+          <p className="mt-3 text-ink-500">말이 아니라, 실제로 확인 가능한 결과와 약속입니다.</p>
+        </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -123,6 +195,12 @@ export function Home() {
             </div>
           ))}
         </div>
+        <p className="mt-10 text-center text-xs text-ink-400">
+          방문자 수치는 대표가 직접 기획·개발·운영 중인 사이트의 애널리틱스 실측 데이터입니다 (2023~2026).{" "}
+          <Link to="/about" className="font-semibold text-brand underline">
+            성장 그래프 보기
+          </Link>
+        </p>
       </section>
 
       {/* 하단 CTA */}

@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Home } from "@/pages/Home";
 import { About } from "@/pages/About";
 import { Services } from "@/pages/Services";
+import { Organizations } from "@/pages/Organizations";
 import { Programs } from "@/pages/Programs";
 import { ProgramDetail } from "@/pages/ProgramDetail";
 import { Portfolio } from "@/pages/Portfolio";
@@ -19,6 +20,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
+          <Route path="organizations" element={<Organizations />} />
           <Route path="programs" element={<Programs />} />
           <Route path="programs/:slug" element={<ProgramDetail />} />
           <Route path="portfolio" element={<Portfolio />} />

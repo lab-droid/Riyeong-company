@@ -26,6 +26,7 @@ export function Footer() {
               <li><Link to="/services" className="hover:text-white">서비스</Link></li>
               <li><Link to="/programs" className="hover:text-white">교육 프로그램</Link></li>
               <li><Link to="/portfolio" className="hover:text-white">포트폴리오</Link></li>
+              <li><Link to="/organizations" className="hover:text-white">기관·기업 안내</Link></li>
             </ul>
           </div>
 

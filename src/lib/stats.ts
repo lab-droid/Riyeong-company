@@ -1,4 +1,8 @@
-// 실적 하이라이트 목업 수치 — 반드시 발주처가 제공하는 사실 데이터로 교체 후 오픈합니다. (콘텐츠 원칙 7-2)
+// 실적 하이라이트 — 대표가 직접 운영 중인 사이트의 실측 데이터(growth.ts)와
+// 검증 가능한 사실·약속으로 구성. (교육 수행 인원·협업 건수 등은 리영컴퍼니 자체 실적이
+// 쌓이는 대로 별도 항목으로 추가 예정)
+import { GROWTH_STATS } from "@/lib/growth";
+
 export interface Stat {
   label: string;
   value: number;
@@ -6,10 +10,10 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { label: "교육 수행 인원 (누적)", value: 500, suffix: "명+" },
-  { label: "기업·기관 협업", value: 30, suffix: "개사+" },
-  { label: "컨설팅·구축 프로젝트", value: 40, suffix: "건+" },
-  { label: "운영 홈페이지 월 방문자", value: 1200, suffix: "명+" },
+  { label: "월 최고 방문자 (실측)", value: GROWTH_STATS.peakMonthly, suffix: "명" },
+  { label: "누적 방문자 (2023~2026)", value: GROWTH_STATS.cumulativeVisitors, suffix: "명+" },
+  { label: "AI 실무 활용", value: 4, suffix: "년차" },
+  { label: "견적·서류 회신", value: 1, suffix: "영업일 이내" },
 ];
 
 export interface TimelineItem {

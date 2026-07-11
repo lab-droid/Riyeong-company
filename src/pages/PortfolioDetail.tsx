@@ -3,6 +3,7 @@ import { ArrowRight, Sparkles, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { getPortfolioBySlug } from "@/lib/portfolio";
 
 export function PortfolioDetail() {
@@ -13,6 +14,7 @@ export function PortfolioDetail() {
 
   return (
     <>
+      <PageMeta title={item.title} description={item.summary} />
       <div className="flex h-56 items-center justify-center bg-gradient-to-br from-brand-100 to-brand-50 sm:h-72">
         <Sparkles size={48} className="text-brand-300" />
       </div>

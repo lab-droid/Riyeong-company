@@ -4,14 +4,20 @@ import { CheckCircle2, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { SITE } from "@/lib/site";
 
 const INTERESTS = ["교육", "컨설팅", "유지관리"] as const;
+const INQUIRY_TYPES = ["개인·소상공인", "기관·기업"] as const;
 
 export function Contact() {
   const [searchParams] = useSearchParams();
   const courseNote = searchParams.get("course");
+  const isOrgDefault = searchParams.get("type") === "organization";
 
+  const [inquiryType, setInquiryType] = useState<(typeof INQUIRY_TYPES)[number]>(
+    isOrgDefault ? "기관·기업" : "개인·소상공인",
+  );
   const [interests, setInterests] = useState<string[]>([]);
   const [agreed, setAgreed] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -43,6 +49,7 @@ export function Contact() {
   if (submitted) {
     return (
       <section className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-4 text-center sm:px-6">
+        <PageMeta title="상담 신청 완료" description="상담 신청이 접수되었습니다." />
         <CheckCircle2 size={56} className="mb-6 text-brand" />
         <h1 className="text-2xl font-black text-ink-900">상담 신청이 접수되었습니다</h1>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-500">
@@ -61,6 +68,10 @@ export function Contact() {
 
   return (
     <>
+      <PageMeta
+        title="상담 신청"
+        description="전화, 카카오톡, 폼 무엇이든 편하신 방법으로 리영컴퍼니에 상담을 신청해 주세요."
+      />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">상담 신청</Badge>
@@ -84,24 +95,33 @@ export function Contact() {
             </Card>
           </a>
 
-          <Card className="flex items-center gap-4 p-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-50 text-accent-600">
-              <MessageCircle size={22} />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-ink-400">카카오톡 채널</p>
-              <p className="text-[15px] font-semibold text-ink-500">채널 개설 후 연결 예정</p>
-            </div>
-          </Card>
+          {SITE.kakaoChannelUrl && (
+            <a href={SITE.kakaoChannelUrl} target="_blank" rel="noreferrer">
+              <Card className="flex items-center gap-4 p-6 transition-shadow hover:shadow-md">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-50 text-accent-600">
+                  <MessageCircle size={22} />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-ink-400">카카오톡 채널</p>
+                  <p className="text-lg font-black text-ink-900">문의하기</p>
+                </div>
+              </Card>
+            </a>
+          )}
 
           <Card className="p-6">
-            <div className="mb-3 flex items-center gap-2 text-sm font-bold text-ink-400">
+            <div className="mb-2 flex items-center gap-2 text-sm font-bold text-ink-400">
               <MapPin size={18} /> 오시는 길
             </div>
-            <div className="flex h-40 items-center justify-center rounded-xl bg-ink-100 text-sm text-ink-400">
-              지도 영역 (카카오맵 연동 예정)
-            </div>
-            <p className="mt-3 text-sm text-ink-500">{SITE.address}</p>
+            <p className="text-[15px] leading-relaxed text-ink-700">{SITE.address}</p>
+            <a
+              href={`https://map.kakao.com/link/search/${encodeURIComponent(SITE.address)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-2 transition-all"
+            >
+              카카오맵에서 길찾기 →
+            </a>
           </Card>
         </div>
 
@@ -113,6 +133,25 @@ export function Contact() {
             </div>
           )}
           <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="mb-2 block text-sm font-bold text-ink-700">문의 유형</label>
+              <div className="flex flex-wrap gap-2">
+                {INQUIRY_TYPES.map((v) => (
+                  <button
+                    type="button"
+                    key={v}
+                    onClick={() => setInquiryType(v)}
+                    className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors ${
+                      inquiryType === v
+                        ? "border-brand bg-brand text-white"
+                        : "border-ink-200 text-ink-600 hover:border-brand-300"
+                    }`}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div>
               <label className="mb-1.5 block text-sm font-bold text-ink-700">이름 *</label>
               <input
@@ -131,15 +170,49 @@ export function Contact() {
                 placeholder="010-0000-0000"
               />
             </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-bold text-ink-700">업종</label>
-              <input
-                name="businessType"
-                type="text"
-                className="h-12 w-full rounded-xl border border-ink-200 px-4 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-100"
-                placeholder="예: 음식점, 제조업, 소매업"
-              />
-            </div>
+            {inquiryType === "개인·소상공인" ? (
+              <div>
+                <label className="mb-1.5 block text-sm font-bold text-ink-700">업종</label>
+                <input
+                  name="businessType"
+                  type="text"
+                  className="h-12 w-full rounded-xl border border-ink-200 px-4 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-100"
+                  placeholder="예: 음식점, 제조업, 소매업"
+                />
+              </div>
+            ) : (
+              <>
+                <div>
+                  <label className="mb-1.5 block text-sm font-bold text-ink-700">기관·기업명</label>
+                  <input
+                    name="orgName"
+                    type="text"
+                    className="h-12 w-full rounded-xl border border-ink-200 px-4 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-100"
+                    placeholder="예: OO시청, OO주식회사"
+                  />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-bold text-ink-700">예상 인원</label>
+                    <input
+                      name="expectedHeadcount"
+                      type="text"
+                      className="h-12 w-full rounded-xl border border-ink-200 px-4 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-100"
+                      placeholder="예: 20명"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-bold text-ink-700">희망 일정</label>
+                    <input
+                      name="preferredSchedule"
+                      type="text"
+                      className="h-12 w-full rounded-xl border border-ink-200 px-4 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand-100"
+                      placeholder="예: 2026년 9월 중"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
             <div>
               <label className="mb-2 block text-sm font-bold text-ink-700">관심 분야</label>
               <div className="flex flex-wrap gap-2">

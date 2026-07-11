@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { to: "/services", label: "서비스" },
   { to: "/programs", label: "교육 프로그램" },
   { to: "/portfolio", label: "포트폴리오" },
+  { to: "/organizations", label: "기관·기업 안내" },
 ];
 
 export function Navbar() {

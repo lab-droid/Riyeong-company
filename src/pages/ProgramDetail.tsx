@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, ChevronDown, MapPin, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { PageMeta } from "@/components/PageMeta";
 import { getCourseBySlug, type CourseStatus } from "@/lib/courses";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +23,7 @@ export function ProgramDetail() {
 
   return (
     <>
+      <PageMeta title={course.title} description={course.summary} />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <Badge variant={STATUS_STYLE[course.status]} className="mb-4">{course.status}</Badge>

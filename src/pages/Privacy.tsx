@@ -1,8 +1,10 @@
+import { PageMeta } from "@/components/PageMeta";
 import { SITE } from "@/lib/site";
 
 export function Privacy() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageMeta title="개인정보처리방침" description={`${SITE.name} 개인정보처리방침 안내입니다.`} />
       <h1 className="mb-2 text-2xl font-black text-ink-900 sm:text-3xl">개인정보처리방침</h1>
       <p className="mb-10 text-sm text-ink-400">
         본 방침은 프로토타입 검토용 초안입니다. 오픈 전 최종 문구를 발주처와 함께 확정합니다.

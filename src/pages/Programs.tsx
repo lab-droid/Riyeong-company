@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { PageMeta } from "@/components/PageMeta";
 import { COURSES, type CourseStatus } from "@/lib/courses";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,10 @@ export function Programs() {
 
   return (
     <>
+      <PageMeta
+        title="교육 프로그램"
+        description="지금 신청할 수 있는 AI 교육 프로그램 목록입니다. AI가 처음이어도 사장님 속도에 맞춰 진행합니다."
+      />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">교육 프로그램</Badge>

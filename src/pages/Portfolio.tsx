@@ -2,11 +2,16 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { PageMeta } from "@/components/PageMeta";
 import { PORTFOLIO } from "@/lib/portfolio";
 
 export function Portfolio() {
   return (
     <>
+      <PageMeta
+        title="포트폴리오"
+        description="리영컴퍼니가 실제로 함께 진행한 AI 교육·컨설팅 수행 사례입니다."
+      />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">포트폴리오</Badge>
@@ -39,9 +44,6 @@ export function Portfolio() {
             </Link>
           ))}
         </div>
-        <p className="mt-8 text-center text-sm text-ink-400">
-          (사례 이미지는 발주처 제공 자료로 교체 예정입니다)
-        </p>
       </section>
     </>
   );

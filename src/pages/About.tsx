@@ -1,11 +1,20 @@
+import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { PageMeta } from "@/components/PageMeta";
+import { CountUp } from "@/components/CountUp";
+import { GrowthChart } from "@/components/GrowthChart";
 import { SITE } from "@/lib/site";
 import { TIMELINE } from "@/lib/stats";
+import { CASE_STUDY, CHART_DATA, GROWTH_STATS } from "@/lib/growth";
 
 export function About() {
   return (
     <>
+      <PageMeta
+        title="회사 소개"
+        description={`${SITE.name} 대표 ${SITE.ceo}와 미션, 대표 스토리를 소개합니다.`}
+      />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 px-4 py-16 text-center sm:px-6 lg:flex-row lg:text-left lg:px-8">
           <img
@@ -67,10 +76,70 @@ export function About() {
               </Card>
             ))}
           </div>
-          <p className="mt-8 text-center text-sm text-ink-400">
-            (대표 스토리 상세 원고는 발주처 제공 후 반영 예정입니다)
+        </div>
+      </section>
+
+      {/* AI 직접 증명 사례 */}
+      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <Badge variant="brand" className="mb-4">말이 아니라 결과로</Badge>
+          <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">
+            비전공자가 AI만으로 직접 키운 사이트
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-500">
+            대표가 {CASE_STUDY.launchLabel}부터 지금까지 {CASE_STUDY.role.split(" ")[0]}하고 있는
+            <br className="hidden sm:block" />
+            {CASE_STUDY.category} 사이트의 실측 방문자 데이터입니다.
           </p>
         </div>
+
+        <Card className="p-6 sm:p-8">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-sm font-bold text-ink-400">{CASE_STUDY.siteName}</p>
+              <p className="text-xs text-ink-400">월별 방문자 추이 (2023.01 ~ 2026.06)</p>
+            </div>
+            <a
+              href={CASE_STUDY.siteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-1.5 transition-all"
+            >
+              사이트 방문하기 <ExternalLink size={15} />
+            </a>
+          </div>
+
+          <GrowthChart data={CHART_DATA} peakDate="2026-01" />
+
+          <div className="mt-10 grid gap-6 border-t border-ink-100 pt-8 text-center sm:grid-cols-3">
+            <div>
+              <p className="text-3xl font-black text-brand sm:text-4xl">
+                <CountUp to={GROWTH_STATS.growthMultiple} />배
+              </p>
+              <p className="mt-2 text-sm font-semibold text-ink-500">
+                시작({GROWTH_STATS.startLabel}) 대비 최고월 성장
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-black text-brand sm:text-4xl">
+                <CountUp to={GROWTH_STATS.peakMonthly} />명
+              </p>
+              <p className="mt-2 text-sm font-semibold text-ink-500">
+                월 최고 방문자 ({GROWTH_STATS.peakLabel})
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-black text-brand sm:text-4xl">
+                <CountUp to={GROWTH_STATS.cumulativeVisitors} />명+
+              </p>
+              <p className="mt-2 text-sm font-semibold text-ink-500">누적 방문자 (2023~2026)</p>
+            </div>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-ink-400">
+            자체 운영 사이트 애널리틱스 실측 데이터 기준입니다. 리영컴퍼니의 회사 실적이 아닌, 대표 개인 수행 이력입니다.
+          </p>
+        </Card>
       </section>
 
       {/* 대표 이력 */}
@@ -93,9 +162,6 @@ export function About() {
             <p className="text-sm text-ink-500">소상공인 지원기관 주관 프로그램 강사 참여</p>
           </li>
         </ul>
-        <p className="mt-6 text-sm text-ink-400">
-          (실제 이력·경력 사항은 발주처 제공 원고로 교체됩니다)
-        </p>
       </section>
     </>
   );
