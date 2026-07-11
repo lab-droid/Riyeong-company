@@ -8,6 +8,11 @@ import { Reveal } from "@/components/Reveal";
 import { PageMeta } from "@/components/PageMeta";
 import { cn } from "@/lib/utils";
 
+const ctaWord = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0 },
+};
+
 const PROCESS_STEPS = [
   { title: "문의", desc: "전화·폼으로 필요하신 내용을 남겨주세요." },
   { title: "요구 파악", desc: "대상·인원·일정·예산을 함께 확인합니다." },
@@ -98,24 +103,23 @@ export function Organizations() {
           </Reveal>
 
           {/* 진행 경로 트래커 */}
-          <div className="mb-6 hidden items-center lg:flex">
+          <div className="relative mb-6 hidden lg:grid lg:grid-cols-6 lg:gap-4">
+            <motion.div
+              className="absolute top-[calc(50%-1px)] h-0.5 origin-left bg-brand-200"
+              style={{ left: "calc(8.333% - 6.667px)", right: "calc(8.333% - 6.667px)" }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+            />
             {PROCESS_STEPS.map((step, i) => (
-              <div key={step.title} className="flex flex-1 items-center">
+              <div key={step.title} className="flex items-center justify-center">
                 <div
                   className={cn(
-                    "h-3 w-3 shrink-0 rounded-full",
+                    "z-10 h-3 w-3 shrink-0 rounded-full",
                     i === PROCESS_STEPS.length - 1 ? "bg-accent-500" : "bg-brand",
                   )}
                 />
-                {i < PROCESS_STEPS.length - 1 && (
-                  <motion.div
-                    className="h-0.5 flex-1 origin-left bg-brand-200"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.4, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                )}
               </div>
             ))}
           </div>
@@ -163,21 +167,44 @@ export function Organizations() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand to-brand-800">
         <div className="ly-dot-grid pointer-events-none absolute inset-0 text-white/[0.06]" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-300/20 blur-3xl" />
-        <Reveal className="relative mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center sm:px-6 sm:py-28 lg:px-8">
-          <h2 className="text-2xl font-black text-white sm:text-4xl">
-            지금 문의하시면, 필요한 서류부터 챙겨드립니다
-          </h2>
-          <p className="max-w-xl text-[15px] text-brand-100 sm:text-lg">
+        <div className="ly-aurora-b pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
+        <div className="ly-aurora-a pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-300/20 blur-3xl" />
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center sm:px-6 sm:py-28 lg:px-8">
+          <motion.h2
+            className="text-2xl font-black text-white sm:text-4xl"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ staggerChildren: 0.05 }}
+          >
+            {"지금 문의하시면, 필요한 서류부터 챙겨드립니다".split(" ").map((word, i) => (
+              <motion.span key={i} variants={ctaWord} className="mr-2 inline-block">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.p
+            className="max-w-xl text-[15px] text-brand-100 sm:text-lg"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             견적서·강의계획서·강사 프로필까지 1영업일 이내 준비해 드립니다.
-          </p>
-          <Link to="/contact?type=organization" className="group mt-4">
-            <Button size="lg" variant="dark" className="!bg-white !text-brand hover:!bg-brand-50">
-              기관·기업 상담 신청하기 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </Reveal>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.55 }}
+          >
+            <Link to="/contact?type=organization" className="group mt-4">
+              <Button size="lg" variant="dark" className="!bg-white !text-brand hover:!bg-brand-50">
+                기관·기업 상담 신청하기 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
       </section>
     </>
   );

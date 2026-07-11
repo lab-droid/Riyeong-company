@@ -85,24 +85,23 @@ export function Services() {
           </p>
 
           {/* 진행 경로 트래커 */}
-          <div className="mb-6 hidden items-center sm:flex">
+          <div className="relative mb-6 hidden sm:grid sm:grid-cols-4 sm:gap-4">
+            <motion.div
+              className="absolute top-[calc(50%-1px)] h-0.5 origin-left bg-brand-200"
+              style={{ left: "calc(12.5% - 6px)", right: "calc(12.5% - 6px)" }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+            />
             {PROCESS_STEPS.map((step, i) => (
-              <div key={step} className="flex flex-1 items-center">
+              <div key={step} className="flex items-center justify-center">
                 <div
                   className={cn(
-                    "h-3 w-3 shrink-0 rounded-full",
+                    "z-10 h-3 w-3 shrink-0 rounded-full",
                     i === PROCESS_STEPS.length - 1 ? "bg-accent-500" : "bg-brand",
                   )}
                 />
-                {i < PROCESS_STEPS.length - 1 && (
-                  <motion.div
-                    className="h-0.5 flex-1 origin-left bg-brand-200"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                )}
               </div>
             ))}
           </div>

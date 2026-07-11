@@ -1,5 +1,6 @@
+import type { PointerEvent } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion } from "motion/react";
 import { ArrowRight, Building2, GraduationCap, Hammer, Landmark, LifeBuoy, Store, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -79,6 +80,20 @@ function HeroScrollHint() {
   );
 }
 
+function useHeroGlow() {
+  const mx = useMotionValue(-400);
+  const my = useMotionValue(-400);
+  const background = useMotionTemplate`radial-gradient(500px circle at ${mx}px ${my}px, rgba(75,116,230,0.35), transparent 70%)`;
+
+  function onPointerMove(e: PointerEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set(e.clientX - rect.left);
+    my.set(e.clientY - rect.top);
+  }
+
+  return { background, onPointerMove };
+}
+
 function GrowthSparkline() {
   const maxV = Math.max(...CHART_DATA.map((d) => d.visitors));
   const points = CHART_DATA.map((d, i) => {
@@ -94,12 +109,23 @@ function GrowthSparkline() {
       className="pointer-events-none absolute inset-0 h-full w-full text-brand-500"
       aria-hidden="true"
     >
-      <polyline points={points} fill="none" stroke="currentColor" strokeWidth="0.6" opacity={0.18} />
+      <motion.polyline
+        points={points}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.6"
+        initial={{ pathLength: 0, opacity: 0 }}
+        whileInView={{ pathLength: 1, opacity: 0.2 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1] }}
+      />
     </svg>
   );
 }
 
 export function Home() {
+  const heroGlow = useHeroGlow();
+
   return (
     <>
       <PageMeta
@@ -107,9 +133,10 @@ export function Home() {
         description="리영컴퍼니는 AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는 AI 경영컨설팅·교육 회사입니다."
       />
       {/* 히어로 */}
-      <section className="relative overflow-hidden bg-ink-950">
+      <section className="relative overflow-hidden bg-ink-950" onPointerMove={heroGlow.onPointerMove}>
         <div className="ly-aurora-a pointer-events-none absolute -top-24 right-0 h-[32rem] w-[32rem] rounded-full bg-brand-500/40 blur-3xl" />
         <div className="ly-aurora-b pointer-events-none absolute bottom-0 left-0 h-[26rem] w-[26rem] rounded-full bg-accent-500/25 blur-3xl" />
+        <motion.div className="pointer-events-none absolute inset-0" style={{ background: heroGlow.background }} />
 
         {/* 로고의 '길'을 잇는 장식 경로 */}
         <svg
@@ -163,15 +190,7 @@ export function Home() {
               ))}
             </motion.span>
             <br />
-            <span className="relative inline-block text-brand-200">
-              잡는 법을 가르치는 회사
-              <motion.span
-                className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-gradient-to-r from-brand-300 via-brand-200 to-accent-400"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.7, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </span>
+            <span className="text-brand-200">잡는 법을 가르치는 회사</span>
           </h1>
           <motion.p
             className="mx-auto mt-6 max-w-xl text-lg text-ink-200 sm:text-xl"
@@ -305,7 +324,9 @@ export function Home() {
       </section>
 
       {/* 실적 하이라이트 */}
-      <section className="relative overflow-hidden bg-ink-950 px-4 py-20 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-ink-950 px-4 py-24 sm:px-6 sm:py-28 lg:px-8">
+        <div className="ly-aurora-a pointer-events-none absolute -top-32 left-1/4 h-[28rem] w-[28rem] rounded-full bg-brand-500/20 blur-3xl" />
+        <div className="ly-aurora-b pointer-events-none absolute -bottom-32 right-1/4 h-[24rem] w-[24rem] rounded-full bg-accent-500/15 blur-3xl" />
         <GrowthSparkline />
         <div className="relative mx-auto max-w-7xl">
           <Reveal className="mb-12 text-center">
@@ -339,21 +360,44 @@ export function Home() {
       {/* 하단 CTA */}
       <section className="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand to-brand-800">
         <div className="ly-dot-grid pointer-events-none absolute inset-0 text-white/[0.06]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-brand-300/20 blur-3xl" />
-        <Reveal className="relative mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center sm:px-6 sm:py-28 lg:px-8">
-          <h2 className="text-2xl font-black text-white sm:text-4xl">
-            사장님이 원하는 대로, 지금부터 시작하세요
-          </h2>
-          <p className="max-w-xl text-[15px] text-brand-100 sm:text-lg">
+        <div className="ly-aurora-b pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-accent-500/20 blur-3xl" />
+        <div className="ly-aurora-a pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-brand-300/20 blur-3xl" />
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center sm:px-6 sm:py-28 lg:px-8">
+          <motion.h2
+            className="text-2xl font-black text-white sm:text-4xl"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ staggerChildren: 0.05 }}
+          >
+            {"사장님이 원하는 대로, 지금부터 시작하세요".split(" ").map((word, i) => (
+              <motion.span key={i} variants={heroWord} className="mr-2 inline-block">
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.p
+            className="max-w-xl text-[15px] text-brand-100 sm:text-lg"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             무엇이든 편하게 말씀해 주시면, 우리 가게 상황에 맞는 방법을 함께 찾아드립니다.
-          </p>
-          <Link to="/contact" className="group mt-4">
-            <Button size="lg" variant="dark" className="!bg-white !text-brand hover:!bg-brand-50">
-              무료 상담 신청하기 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </Reveal>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: 0.55 }}
+          >
+            <Link to="/contact" className="group mt-4">
+              <Button size="lg" variant="dark" className="!bg-white !text-brand hover:!bg-brand-50">
+                무료 상담 신청하기 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
       </section>
     </>
   );
