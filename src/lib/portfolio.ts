@@ -20,24 +20,6 @@ export const PORTFOLIO: PortfolioItem[] = [
     isPersonalHistory: false,
   },
   {
-    slug: "manufacturer-ai-automation",
-    title: "제조업체 AI 업무 자동화 컨설팅",
-    summary: "반복적인 견적·문의 응대 업무를 AI로 자동화한 컨설팅 사례",
-    content:
-      "중소 제조업체의 반복적인 견적 문의 응대 업무를 진단하고, AI 에이전트를 도입해 1차 응대를 자동화했습니다. 진단부터 설계, 구축, 담당자 전수까지 전 과정을 함께 진행했습니다.",
-    result: "담당 직원의 단순 응대 업무 시간이 줄어 본연의 업무에 더 집중할 수 있게 되었습니다.",
-    isPersonalHistory: false,
-  },
-  {
-    slug: "public-agency-lecture",
-    title: "공공기관 소상공인 지원 AI 교육 강의",
-    summary: "소상공인 지원기관 주관 AI 활용 교육 강의 진행",
-    content:
-      "지역 소상공인 지원기관이 주관한 디지털 역량 강화 프로그램에서 AI 활용 강의를 진행했습니다. 이 프로젝트는 리영컴퍼니 설립 이전, 대표 개인 자격으로 수행한 강의 이력입니다.",
-    result: "교육 만족도 조사에서 참여자들의 긍정적인 평가를 받았습니다.",
-    isPersonalHistory: true,
-  },
-  {
     slug: "startup-ai-agent-site",
     title: "스타트업 AI 에이전트 홈페이지 구축",
     summary: "고객 문의를 자동 응대하는 AI 에이전트 탑재 홈페이지 구축",

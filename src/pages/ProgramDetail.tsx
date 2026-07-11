@@ -88,7 +88,7 @@ export function ProgramDetail() {
             <div>
               <p className="font-bold text-ink-900">허예령 (리영컴퍼니 대표)</p>
               <p className="mt-1 text-sm leading-relaxed text-ink-500">
-                소상공인·기업 현장에서 AI 교육·컨설팅을 직접 수행해 온 강사가 진행합니다.
+                소상공인 대상 AI 교육을 직접 진행해 온 강사가 함께합니다.
               </p>
             </div>
           </Card>

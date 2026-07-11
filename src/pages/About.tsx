@@ -1,12 +1,15 @@
+import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { PageMeta } from "@/components/PageMeta";
 import { CountUp } from "@/components/CountUp";
 import { GrowthChart } from "@/components/GrowthChart";
+import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 import { TIMELINE } from "@/lib/stats";
 import { CASE_STUDY, CHART_DATA, GROWTH_STATS } from "@/lib/growth";
+import { cn } from "@/lib/utils";
 
 export function About() {
   return (
@@ -17,12 +20,16 @@ export function About() {
       />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 px-4 py-16 text-center sm:px-6 lg:flex-row lg:text-left lg:px-8">
-          <img
-            src="/images/profile.jpg"
-            alt={`${SITE.ceo} 대표`}
-            className="h-40 w-40 flex-shrink-0 rounded-full object-cover object-top shadow-lg sm:h-48 sm:w-48"
-          />
-          <div>
+          <Reveal>
+            <div className="w-fit flex-shrink-0 rounded-full bg-gradient-to-br from-brand to-accent-500 p-1">
+              <img
+                src="/images/profile.jpg"
+                alt={`${SITE.ceo} 대표`}
+                className="h-40 w-40 rounded-full border-4 border-white object-cover object-top sm:h-48 sm:w-48"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
             <Badge variant="brand" className="mb-4">회사 소개</Badge>
             <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">{SITE.name}</h1>
             <p className="mt-4 text-lg text-ink-500">
@@ -30,50 +37,97 @@ export function About() {
               <br className="hidden sm:block" />
               AI 경영컨설팅·교육 회사입니다.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 회사 개요 */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-2xl font-black text-ink-900">회사 개요</h2>
+        <Reveal>
+          <h2 className="mb-6 text-2xl font-black text-ink-900">
+            회사 개요<span className="text-accent">.</span>
+          </h2>
+        </Reveal>
         <div className="grid gap-4 sm:grid-cols-3">
-          <Card className="p-6">
-            <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">소재지</p>
-            <p className="text-lg font-bold text-ink-900">{SITE.region}</p>
-          </Card>
-          <Card className="p-6">
-            <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">대표</p>
-            <p className="text-lg font-bold text-ink-900">{SITE.ceo}</p>
-          </Card>
-          <Card className="p-6">
-            <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">사업 영역</p>
-            <p className="text-lg font-bold text-ink-900">AI 경영컨설팅 · 교육</p>
-          </Card>
+          <Reveal>
+            <Card className="h-full p-6">
+              <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">소재지</p>
+              <p className="text-lg font-bold text-ink-900">{SITE.region}</p>
+            </Card>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <Card className="h-full p-6">
+              <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">대표</p>
+              <p className="text-lg font-bold text-ink-900">{SITE.ceo}</p>
+            </Card>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <Card className="h-full p-6">
+              <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">사업 영역</p>
+              <p className="text-lg font-bold text-ink-900">AI 경영컨설팅 · 교육</p>
+            </Card>
+          </Reveal>
         </div>
 
-        <div className="mt-8 rounded-2xl bg-brand-50 p-6">
-          <p className="mb-1 text-sm font-bold text-brand">미션</p>
-          <p className="text-[15px] leading-relaxed text-ink-700">
-            소상공인과 기업이 대행에 의존하지 않고, AI를 활용해 스스로 문제를 해결할 수 있는 힘을 갖도록 돕습니다.
-          </p>
-        </div>
+        <Reveal delay={0.15}>
+          <div className="mt-8 rounded-2xl bg-brand-50 p-6">
+            <p className="mb-1 text-sm font-bold text-brand">미션</p>
+            <p className="text-[15px] leading-relaxed text-ink-700">
+              소상공인과 기업이 대행에 의존하지 않고, AI를 활용해 스스로 문제를 해결할 수 있는 힘을 갖도록 돕습니다.
+            </p>
+          </div>
+        </Reveal>
       </section>
 
       {/* 대표 스토리 */}
       <section className="bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="mb-10 text-center text-2xl font-black text-ink-900">대표 스토리</h2>
+          <Reveal>
+            <h2 className="mb-10 text-center text-2xl font-black text-ink-900">
+              대표 스토리<span className="text-accent">.</span>
+            </h2>
+          </Reveal>
+
+          {/* 진행 경로 트래커 */}
+          <div className="mb-6 hidden items-center sm:flex">
+            {TIMELINE.map((item, i) => (
+              <div key={item.title} className="flex flex-1 items-center">
+                <div
+                  className={cn(
+                    "h-3 w-3 shrink-0 rounded-full",
+                    i === TIMELINE.length - 1 ? "bg-accent-500" : "bg-brand",
+                  )}
+                />
+                {i < TIMELINE.length - 1 && (
+                  <motion.div
+                    className="h-0.5 flex-1 origin-left bg-brand-200"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
           <div className="grid gap-6 sm:grid-cols-3">
             {TIMELINE.map((item, i) => (
-              <Card key={item.title} className="relative p-6">
-                <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-black text-white">
-                  {i + 1}
-                </span>
-                <p className="mb-1 text-xs font-bold uppercase tracking-widest text-brand">{item.year}</p>
-                <h3 className="mb-2 text-lg font-bold text-ink-900">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-ink-500">{item.desc}</p>
-              </Card>
+              <Reveal key={item.title} delay={i * 0.08}>
+                <Card className="relative h-full p-6">
+                  <span
+                    className={cn(
+                      "mb-4 flex h-9 w-9 items-center justify-center rounded-full text-sm font-black text-white",
+                      i === TIMELINE.length - 1 ? "bg-accent-500" : "bg-brand",
+                    )}
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="mb-1 text-xs font-bold uppercase tracking-widest text-brand">{item.year}</p>
+                  <h3 className="mb-2 text-lg font-bold text-ink-900">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-ink-500">{item.desc}</p>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -81,18 +135,19 @@ export function About() {
 
       {/* AI 직접 증명 사례 */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
-          <Badge variant="brand" className="mb-4">말이 아니라 결과로</Badge>
+        <Reveal className="mb-10 text-center">
+          <Badge variant="accent" className="mb-4">말이 아니라 결과로</Badge>
           <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">
-            비전공자가 AI만으로 직접 키운 사이트
+            비전공자가 AI만으로 직접 키운 사이트<span className="text-accent">.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-500">
             대표가 {CASE_STUDY.launchLabel}부터 지금까지 {CASE_STUDY.role.split(" ")[0]}하고 있는
             <br className="hidden sm:block" />
             {CASE_STUDY.category} 사이트의 실측 방문자 데이터입니다.
           </p>
-        </div>
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <Card className="p-6 sm:p-8">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -140,27 +195,39 @@ export function About() {
             자체 운영 사이트 애널리틱스 실측 데이터 기준입니다. 리영컴퍼니의 회사 실적이 아닌, 대표 개인 수행 이력입니다.
           </p>
         </Card>
+        </Reveal>
       </section>
 
       {/* 대표 이력 */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="mb-8 text-2xl font-black text-ink-900">대표 이력 · 수행 역량</h2>
+        <Reveal>
+          <h2 className="mb-8 text-2xl font-black text-ink-900">
+            대표 이력 · 수행 역량<span className="text-accent">.</span>
+          </h2>
+        </Reveal>
         <ul className="space-y-4 border-l-2 border-brand-100 pl-6">
-          <li className="relative">
+          <motion.li
+            className="relative"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             <span className="absolute -left-[1.95rem] top-1.5 h-3 w-3 rounded-full bg-brand" />
             <p className="font-bold text-ink-900">소상공인 대상 AI 마케팅 교육 다수 진행</p>
             <p className="text-sm text-ink-500">전통시장·소상공인 지원기관 협력 교육 경험</p>
-          </li>
-          <li className="relative">
-            <span className="absolute -left-[1.95rem] top-1.5 h-3 w-3 rounded-full bg-brand" />
-            <p className="font-bold text-ink-900">기업 대상 AI 업무 자동화 컨설팅 수행</p>
-            <p className="text-sm text-ink-500">진단부터 구축·전수까지 전 과정 수행</p>
-          </li>
-          <li className="relative">
-            <span className="absolute -left-[1.95rem] top-1.5 h-3 w-3 rounded-full bg-brand" />
-            <p className="font-bold text-ink-900">공공기관 협력 디지털 역량 강화 강의</p>
-            <p className="text-sm text-ink-500">소상공인 지원기관 주관 프로그램 강사 참여</p>
-          </li>
+          </motion.li>
+          <motion.li
+            className="relative"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="absolute -left-[1.95rem] top-1.5 h-3 w-3 rounded-full bg-accent-500" />
+            <p className="font-bold text-ink-900">비전공 상태로 AI만 활용해 온라인 학원 사이트 직접 개발·운영</p>
+            <p className="text-sm text-ink-500">2022년 오픈, 4년째 기획·개발·운영 전담 (위 성장 그래프 참고)</p>
+          </motion.li>
         </ul>
       </section>
     </>

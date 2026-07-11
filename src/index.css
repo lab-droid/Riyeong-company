@@ -63,9 +63,16 @@
 .ly-aurora-a { animation: ly-aurora-a 20s ease-in-out infinite; }
 .ly-aurora-b { animation: ly-aurora-b 24s ease-in-out infinite; }
 
+.ly-dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .ly-aurora-a, .ly-aurora-b {
-    animation: none !important;
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
   html {
     scroll-behavior: auto;

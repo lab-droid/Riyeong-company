@@ -23,7 +23,7 @@ export const COURSES: Course[] = [
     schedule: "매월 2회, 토요일 오후 2시 (3시간)",
     location: "부산 (오프라인)",
     capacity: "12명",
-    status: "모집중",
+    status: "마감",
     curriculum: [
       { week: "1교시", title: "AI, 어렵지 않습니다", desc: "챗GPT가 뭔지, 사장님 언어로 쉽게 설명합니다." },
       { week: "2교시", title: "AI로 블로그·SNS 글쓰기", desc: "내 가게 홍보 글을 AI와 함께 직접 써봅니다." },
@@ -43,7 +43,7 @@ export const COURSES: Course[] = [
     schedule: "매주 화요일 저녁 7시, 총 4주",
     location: "온라인 (Zoom)",
     capacity: "10명",
-    status: "모집중",
+    status: "마감",
     curriculum: [
       { week: "1주차", title: "AI 에이전트란 무엇인가", desc: "자동화와 AI 에이전트의 차이, 우리 가게에 필요한 것 찾기." },
       { week: "2주차", title: "자주 묻는 질문 자동 응대 만들기", desc: "고객 문의에 자동으로 답하는 챗봇 뼈대 만들기." },
@@ -63,7 +63,7 @@ export const COURSES: Course[] = [
     schedule: "기업 일정에 맞춰 협의 진행 (반나절 또는 1일형)",
     location: "출장 교육 (전국 가능)",
     capacity: "부서 단위 협의",
-    status: "예정",
+    status: "마감",
     curriculum: [
       { week: "1부", title: "우리 회사 업무에서 AI가 줄일 수 있는 일", desc: "실제 업무 사례로 AI 활용 지점을 함께 찾습니다." },
       { week: "2부", title: "부서별 실습", desc: "참석자 업무에 맞춘 프롬프트·도구 실습." },

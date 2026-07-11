@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PageMeta } from "@/components/PageMeta";
+import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 
 const INTERESTS = ["교육", "컨설팅", "유지관리"] as const;
@@ -75,7 +76,7 @@ export function Contact() {
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">상담 신청</Badge>
-          <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">편하게 문의해 주세요</h1>
+          <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">편하게 문의해 주세요<span className="text-accent">.</span></h1>
           <p className="mt-4 text-lg text-ink-500">전화, 카카오톡, 폼 무엇이든 편하신 방법으로 연락 주세요.</p>
         </div>
       </section>
@@ -83,46 +84,55 @@ export function Contact() {
       <section className="mx-auto grid max-w-5xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:px-8">
         {/* 빠른 연락 */}
         <div className="space-y-4">
-          <a href={`tel:${SITE.phone}`}>
-            <Card className="flex items-center gap-4 p-6 transition-shadow hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand">
-                <Phone size={22} />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-ink-400">전화로 문의하기</p>
-                <p className="text-lg font-black text-ink-900">{SITE.phoneDisplay}</p>
-              </div>
-            </Card>
-          </a>
-
-          {SITE.kakaoChannelUrl && (
-            <a href={SITE.kakaoChannelUrl} target="_blank" rel="noreferrer">
-              <Card className="flex items-center gap-4 p-6 transition-shadow hover:shadow-md">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-50 text-accent-600">
-                  <MessageCircle size={22} />
+          <Reveal>
+            <a href={`tel:${SITE.phone}`}>
+              <Card className="flex items-center gap-4 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand">
+                  <Phone size={22} />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-ink-400">카카오톡 채널</p>
-                  <p className="text-lg font-black text-ink-900">문의하기</p>
+                  <p className="text-sm font-bold text-ink-400">전화로 문의하기</p>
+                  <p className="text-lg font-black text-ink-900">{SITE.phoneDisplay}</p>
                 </div>
               </Card>
             </a>
+          </Reveal>
+
+          {SITE.kakaoChannelUrl && (
+            <Reveal delay={0.05}>
+              <a href={SITE.kakaoChannelUrl} target="_blank" rel="noreferrer">
+                <Card className="flex items-center gap-4 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-50 text-accent-600">
+                    <MessageCircle size={22} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-ink-400">카카오톡 채널</p>
+                    <p className="text-lg font-black text-ink-900">문의하기</p>
+                  </div>
+                </Card>
+              </a>
+            </Reveal>
           )}
 
-          <Card className="p-6">
-            <div className="mb-2 flex items-center gap-2 text-sm font-bold text-ink-400">
-              <MapPin size={18} /> 오시는 길
-            </div>
-            <p className="text-[15px] leading-relaxed text-ink-700">{SITE.address}</p>
-            <a
-              href={`https://map.kakao.com/link/search/${encodeURIComponent(SITE.address)}`}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-2 transition-all"
-            >
-              카카오맵에서 길찾기 →
-            </a>
-          </Card>
+          <Reveal delay={0.1}>
+            <Card className="p-6">
+              <div className="mb-2 flex items-center gap-2 text-sm font-bold text-ink-400">
+                <MapPin size={18} /> 오시는 길
+              </div>
+              <p className="text-[15px] leading-relaxed text-ink-700">{SITE.address}</p>
+              <p className="mt-2 text-sm font-semibold text-accent-600">
+                ※ 사전 예약 확정 후 방문 가능합니다. 방문 전 먼저 연락 부탁드립니다.
+              </p>
+              <a
+                href={`https://map.kakao.com/link/search/${encodeURIComponent(SITE.address)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:gap-2 transition-all"
+              >
+                카카오맵에서 길찾기 →
+              </a>
+            </Card>
+          </Reveal>
         </div>
 
         {/* 상담 폼 */}
