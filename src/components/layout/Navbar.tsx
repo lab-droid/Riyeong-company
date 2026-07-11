@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LogoMark } from "@/components/LogoMark";
 import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -20,9 +21,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-base font-black text-white">
-            리
-          </span>
+          <LogoMark size={36} />
           <span className="text-lg font-black tracking-tight text-ink-900">{SITE.name}</span>
         </Link>
 

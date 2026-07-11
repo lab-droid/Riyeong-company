@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#1E4FD6"/>
-  <text x="32" y="42" font-family="'Pretendard','Apple SD Gothic Neo',sans-serif" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">리</text>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2C53D9"/>
+      <stop offset="1" stop-color="#182E6C"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <path d="M21 20.5 H43 V31.5 H21 V42.5 H37" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45.5" cy="42.5" r="4" fill="#EC9D40"/>
 </svg>

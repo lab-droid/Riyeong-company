@@ -7,14 +7,21 @@ export function About() {
   return (
     <>
       <section className="border-b border-ink-100 bg-ink-50">
-        <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
-          <Badge variant="brand" className="mb-4">회사 소개</Badge>
-          <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">{SITE.name}</h1>
-          <p className="mt-4 text-lg text-ink-500">
-            AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는
-            <br className="hidden sm:block" />
-            AI 경영컨설팅·교육 회사입니다.
-          </p>
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 px-4 py-16 text-center sm:px-6 lg:flex-row lg:text-left lg:px-8">
+          <img
+            src="/images/profile.jpg"
+            alt={`${SITE.ceo} 대표`}
+            className="h-40 w-40 flex-shrink-0 rounded-full object-cover object-top shadow-lg sm:h-48 sm:w-48"
+          />
+          <div>
+            <Badge variant="brand" className="mb-4">회사 소개</Badge>
+            <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">{SITE.name}</h1>
+            <p className="mt-4 text-lg text-ink-500">
+              AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는
+              <br className="hidden sm:block" />
+              AI 경영컨설팅·교육 회사입니다.
+            </p>
+          </div>
         </div>
       </section>
 

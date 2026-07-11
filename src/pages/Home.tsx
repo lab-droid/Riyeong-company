@@ -87,9 +87,11 @@ export function Home() {
       {/* 대표 소개 요약 */}
       <section className="bg-ink-50">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 md:grid-cols-[220px_1fr] md:items-center lg:px-8">
-          <div className="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-brand-100 text-5xl font-black text-brand-600 md:mx-0">
-            허
-          </div>
+          <img
+            src="/images/profile.jpg"
+            alt={`${SITE.ceo} 대표`}
+            className="mx-auto h-40 w-40 rounded-full object-cover object-top shadow-lg md:mx-0"
+          />
           <div>
             <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand">대표 소개</p>
             <h2 className="mb-4 text-2xl font-black text-ink-900 sm:text-3xl">대표 허예령</h2>
