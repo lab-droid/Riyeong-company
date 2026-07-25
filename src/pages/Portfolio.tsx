@@ -11,13 +11,13 @@ export function Portfolio() {
     <>
       <PageMeta
         title="포트폴리오"
-        description="리영컴퍼니가 실제로 함께 진행한 AI 교육·컨설팅 수행 사례입니다."
+        description="리영컴퍼니가 실제로 함께 진행한 AI 경영 진단·컨설팅 수행 사례입니다."
       />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <Badge variant="brand" className="mb-4">포트폴리오</Badge>
           <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">수행 사례<span className="text-accent">.</span></h1>
-          <p className="mt-4 text-lg text-ink-500">실제로 함께 진행한 교육·컨설팅 사례입니다.</p>
+          <p className="mt-4 text-lg text-ink-500">실제로 함께 진행한 AI 경영 진단·컨설팅 사례입니다.</p>
         </div>
       </section>
 

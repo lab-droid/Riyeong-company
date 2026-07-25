@@ -1,7 +1,7 @@
 import type { PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion } from "motion/react";
-import { ArrowRight, Building2, GraduationCap, Hammer, Landmark, LifeBuoy, Store, TrendingUp } from "lucide-react";
+import { ArrowRight, Building2, Hammer, Landmark, LifeBuoy, ScanSearch, Store, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,9 +16,9 @@ const AUDIENCE_CARDS = [
   {
     icon: Store,
     title: "소상공인 사장님",
-    desc: "AI로 홍보물·SNS를 직접 만들고 운영할 수 있도록 실습 위주로 가르쳐 드립니다.",
-    to: "/programs",
-    linkLabel: "교육 프로그램 보기",
+    desc: "AI 경영 분석 프로그램 리영솔루션으로 우리 가게를 진단하고, 매출을 늘릴 수 있는 방법을 컨설팅해 드립니다.",
+    to: "/services",
+    linkLabel: "서비스 자세히 보기",
   },
   {
     icon: Building2,
@@ -30,7 +30,7 @@ const AUDIENCE_CARDS = [
   {
     icon: Landmark,
     title: "공공기관·지자체 담당자",
-    desc: "견적서·강의계획서·세금계산서 등 행정 서류까지 빠짐없이 챙겨 진행합니다.",
+    desc: "견적서·제안서·세금계산서 등 행정 서류까지 빠짐없이 챙겨 진행합니다.",
     to: "/organizations",
     linkLabel: "기관·기업 안내 보기",
   },
@@ -38,10 +38,10 @@ const AUDIENCE_CARDS = [
 
 const SERVICE_CARDS = [
   {
-    icon: GraduationCap,
-    title: "가르치기",
-    desc: "AI 활용법을 사장님과 임직원이 스스로 할 수 있도록 교육합니다.",
-    to: "/services#education",
+    icon: ScanSearch,
+    title: "진단하기",
+    desc: "AI 경영 분석 프로그램 리영솔루션으로 우리 회사의 문제점과 개선 방향을 정밀 진단합니다.",
+    to: "/services#consulting",
   },
   {
     icon: Hammer,
@@ -130,7 +130,7 @@ export function Home() {
     <>
       <PageMeta
         title="AI로, 사장님이 직접 할 수 있게"
-        description="리영컴퍼니는 AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는 AI 경영컨설팅·교육 회사입니다."
+        description="리영컴퍼니는 AI 경영 분석 프로그램 리영솔루션으로 소상공인과 기업을 진단하고, AI 맞춤 경영 컨설팅으로 문제를 개선해 성장시키는 AI 경영컨설팅 회사입니다."
       />
       {/* 히어로 */}
       <section className="relative overflow-hidden bg-ink-950" onPointerMove={heroGlow.onPointerMove}>
@@ -173,7 +173,7 @@ export function Home() {
 
         <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Badge variant="dark" className="mb-6">AI 경영컨설팅 · 교육</Badge>
+            <Badge variant="dark" className="mb-6">AI 경영 진단 · 컨설팅</Badge>
           </motion.div>
 
           <h1 className="text-3xl font-black leading-tight text-white sm:text-5xl">
@@ -190,7 +190,7 @@ export function Home() {
               ))}
             </motion.span>
             <br />
-            <span className="text-brand-200">잡는 법을 가르치는 회사</span>
+            <span className="text-brand-200">스스로 잡을 수 있게 만드는 회사</span>
           </h1>
           <motion.p
             className="mx-auto mt-6 max-w-xl text-lg text-ink-200 sm:text-xl"
@@ -212,9 +212,9 @@ export function Home() {
                 상담 신청하기 <ArrowRight size={20} />
               </Button>
             </Link>
-            <Link to="/programs" className="w-full sm:w-auto">
+            <Link to="/services" className="w-full sm:w-auto">
               <Button size="lg" variant="ghost" className="w-full sm:w-auto">
-                교육 프로그램 보기
+                서비스 살펴보기
               </Button>
             </Link>
           </motion.div>
@@ -295,9 +295,9 @@ export function Home() {
             <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand">대표 소개</p>
             <h2 className="mb-4 text-2xl font-black text-ink-900 sm:text-3xl">대표 허예령</h2>
             <p className="text-[15px] leading-relaxed text-ink-600">
-              소상공인과 기업 현장에서 직접 문제를 겪고, AI로 해결하는 방법을 찾아 다시 가르치는 일을 해왔습니다.
+              소상공인과 기업 현장에서 직접 문제를 겪고, AI로 해결하는 방법을 찾아 다시 컨설팅하는 일을 해왔습니다.
               <br />
-              지금까지 소상공인·기업·공공기관과 함께한 AI 교육·컨설팅 경험을 바탕으로 리영컴퍼니를 이끌고 있습니다.
+              지금까지 소상공인·기업·공공기관과 함께한 AI 경영 진단·컨설팅 경험을 바탕으로 리영컴퍼니를 이끌고 있습니다.
             </p>
             <Link to="/about" className="group mt-6 block">
               <div className="flex items-center gap-4 rounded-2xl border-2 border-brand-100 bg-brand-50 px-5 py-4 transition-colors group-hover:border-brand-300">

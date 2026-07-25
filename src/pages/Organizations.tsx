@@ -15,31 +15,31 @@ const ctaWord = {
 
 const PROCESS_STEPS = [
   { title: "문의", desc: "전화·폼으로 필요하신 내용을 남겨주세요." },
-  { title: "요구 파악", desc: "대상·인원·일정·예산을 함께 확인합니다." },
-  { title: "제안·견적", desc: "커리큘럼과 견적서·강의계획서를 보내드립니다." },
+  { title: "요구 파악", desc: "대상·범위·일정·예산을 함께 확인합니다." },
+  { title: "제안·견적", desc: "진단·컨설팅 제안서와 견적서를 보내드립니다." },
   { title: "계약", desc: "계약서 작성 후 일정을 확정합니다." },
-  { title: "수행", desc: "교육·컨설팅을 진행하고 진행 상황을 공유합니다." },
+  { title: "수행", desc: "AI 경영 진단·컨설팅을 진행하고 진행 상황을 공유합니다." },
   { title: "결과 보고", desc: "완료 후 결과보고서·세금계산서를 발행합니다." },
 ];
 
 const DOCS = [
   { icon: FileCheck2, title: "견적서 · 제안서", desc: "요청 시 1영업일 이내 제공합니다." },
-  { icon: Building2, title: "강사 프로필 · 사업자등록증", desc: "내부 결재·품의에 필요한 서류를 즉시 드립니다." },
+  { icon: Building2, title: "컨설턴트 프로필 · 사업자등록증", desc: "내부 결재·품의에 필요한 서류를 즉시 드립니다." },
   { icon: Receipt, title: "세금계산서", desc: "수행 완료 후 정상 발행합니다." },
-  { icon: MapPinned, title: "출장 교육", desc: "부산 외 지역도 협의 후 출강 가능합니다." },
+  { icon: MapPinned, title: "출장 컨설팅", desc: "부산 외 지역도 협의 후 방문 가능합니다." },
 ];
 
 const FAQ = [
   {
-    q: "최소 인원 제한이 있나요?",
-    a: "소규모 부서 단위(5~10명)부터 진행 가능합니다. 정확한 인원과 예산은 상담 시 함께 조율합니다.",
+    q: "AI 경영 진단은 어떻게 진행되나요?",
+    a: "리영솔루션으로 매출·업무 데이터를 분석한 뒤, 진단 결과를 바탕으로 개선 방향과 컨설팅 전략을 제안합니다. 소요 기간은 기업 규모에 따라 상담 시 안내드립니다.",
   },
   {
-    q: "부산 외 지역에도 출강이 가능한가요?",
+    q: "부산 외 지역에도 출장 방문이 가능한가요?",
     a: "가능합니다. 일정과 이동 경비 등은 문의 시 사전에 안내드립니다.",
   },
   {
-    q: "견적서·강의계획서를 내부 결재용으로 받을 수 있나요?",
+    q: "견적서·제안서를 내부 결재용으로 받을 수 있나요?",
     a: "네, 상담 후 요청하시면 결재·품의에 필요한 형식으로 1영업일 이내 보내드립니다.",
   },
   {
@@ -57,7 +57,7 @@ export function Organizations() {
     <>
       <PageMeta
         title="기관·기업 안내"
-        description="공공기관·기업 대상 AI 교육·컨설팅 진행 절차와 견적서·강의계획서·세금계산서 등 행정 지원 안내입니다."
+        description="공공기관·기업 대상 AI 경영 진단·컨설팅 진행 절차와 견적서·제안서·세금계산서 등 행정 지원 안내입니다."
       />
       <section className="border-b border-ink-100 bg-ink-50">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
@@ -190,7 +190,7 @@ export function Organizations() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            견적서·강의계획서·강사 프로필까지 1영업일 이내 준비해 드립니다.
+            견적서·제안서·컨설턴트 프로필까지 1영업일 이내 준비해 드립니다.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}

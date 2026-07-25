@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { to: "/about", label: "회사 소개" },
   { to: "/services", label: "서비스" },
-  { to: "/programs", label: "교육 프로그램" },
   { to: "/portfolio", label: "포트폴리오" },
   { to: "/organizations", label: "기관·기업 안내" },
 ];

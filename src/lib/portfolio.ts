@@ -11,15 +11,6 @@ export interface PortfolioItem {
 
 export const PORTFOLIO: PortfolioItem[] = [
   {
-    slug: "busan-market-ai-marketing",
-    title: "부산 전통시장 소상공인 AI 마케팅 교육",
-    summary: "전통시장 상인회와 함께 진행한 AI 마케팅 실습 교육",
-    content:
-      "부산 지역 전통시장 상인회 소속 소상공인을 대상으로 AI를 활용한 SNS 홍보·메뉴판 제작 실습 교육을 진행했습니다. 참여자 대부분이 디지털 기기에 익숙하지 않은 점을 고려해, 스마트폰만으로 따라할 수 있는 실습 위주로 커리큘럼을 구성했습니다.",
-    result: "참여 상인 다수가 교육 직후 자신의 가게 홍보물에 AI로 만든 콘텐츠를 직접 적용했습니다.",
-    isPersonalHistory: false,
-  },
-  {
     slug: "startup-ai-agent-site",
     title: "스타트업 AI 에이전트 홈페이지 구축",
     summary: "고객 문의를 자동 응대하는 AI 에이전트 탑재 홈페이지 구축",

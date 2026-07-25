@@ -33,9 +33,9 @@ export function About() {
             <Badge variant="brand" className="mb-4">회사 소개</Badge>
             <h1 className="text-3xl font-black text-ink-900 sm:text-4xl">{SITE.name}</h1>
             <p className="mt-4 text-lg text-ink-500">
-              AI를 활용해 소상공인과 기업이 마케팅·반복 업무를 스스로 해결할 수 있도록 가르치는
+              AI 경영 분석 프로그램 리영솔루션으로 소상공인과 기업의 문제를 진단하고,
               <br className="hidden sm:block" />
-              AI 경영컨설팅·교육 회사입니다.
+              AI 맞춤 컨설팅으로 개선·성장시키는 AI 경영컨설팅 회사입니다.
             </p>
           </Reveal>
         </div>
@@ -64,7 +64,7 @@ export function About() {
           <Reveal delay={0.12}>
             <Card className="h-full p-6">
               <p className="mb-1 text-xs font-bold uppercase tracking-widest text-ink-400">사업 영역</p>
-              <p className="text-lg font-bold text-ink-900">AI 경영컨설팅 · 교육</p>
+              <p className="text-lg font-bold text-ink-900">AI 경영 진단 · 컨설팅</p>
             </Card>
           </Reveal>
         </div>
@@ -213,8 +213,8 @@ export function About() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="absolute -left-[1.95rem] top-1.5 h-3 w-3 rounded-full bg-brand" />
-            <p className="font-bold text-ink-900">소상공인 대상 AI 마케팅 교육 다수 진행</p>
-            <p className="text-sm text-ink-500">전통시장·소상공인 지원기관 협력 교육 경험</p>
+            <p className="font-bold text-ink-900">소상공인 대상 AI 활용 컨설팅 다수 진행</p>
+            <p className="text-sm text-ink-500">전통시장·소상공인 지원기관 협력 경험</p>
           </motion.li>
           <motion.li
             className="relative"

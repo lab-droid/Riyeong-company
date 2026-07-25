@@ -8,12 +8,11 @@ import { PageMeta } from "@/components/PageMeta";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 
-const INTERESTS = ["교육", "컨설팅", "유지관리"] as const;
+const INTERESTS = ["AI 경영진단", "컨설팅", "유지관리"] as const;
 const INQUIRY_TYPES = ["개인·소상공인", "기관·기업"] as const;
 
 export function Contact() {
   const [searchParams] = useSearchParams();
-  const courseNote = searchParams.get("course");
   const isOrgDefault = searchParams.get("type") === "organization";
 
   const [inquiryType, setInquiryType] = useState<(typeof INQUIRY_TYPES)[number]>(
@@ -137,11 +136,6 @@ export function Contact() {
 
         {/* 상담 폼 */}
         <Card className="p-7 sm:p-8">
-          {courseNote && (
-            <div className="mb-6 rounded-xl bg-brand-50 px-4 py-3 text-sm font-semibold text-brand">
-              「{courseNote}」 신청을 위한 상담입니다.
-            </div>
-          )}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="mb-2 block text-sm font-bold text-ink-700">문의 유형</label>

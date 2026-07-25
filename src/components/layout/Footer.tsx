@@ -15,7 +15,7 @@ export function Footer() {
             <p className="text-sm leading-relaxed text-ink-400">
               물고기를 잡아주는 대행이 아니라,
               <br />
-              잡는 법을 가르치는 회사
+              스스로 잡을 수 있게 만드는 회사
             </p>
           </div>
 
@@ -24,7 +24,6 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li><Link to="/about" className="hover:text-white">회사 소개</Link></li>
               <li><Link to="/services" className="hover:text-white">서비스</Link></li>
-              <li><Link to="/programs" className="hover:text-white">교육 프로그램</Link></li>
               <li><Link to="/portfolio" className="hover:text-white">포트폴리오</Link></li>
               <li><Link to="/organizations" className="hover:text-white">기관·기업 안내</Link></li>
             </ul>
