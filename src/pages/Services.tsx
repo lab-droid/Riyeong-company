@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { ArrowRight, Check, GraduationCap, Hammer, LifeBuoy } from "lucide-react";
+import { ArrowRight, Check, GraduationCap, Hammer, LifeBuoy, ScanSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,7 +8,12 @@ import { Reveal } from "@/components/Reveal";
 import { PageMeta } from "@/components/PageMeta";
 import { cn } from "@/lib/utils";
 
-const PROCESS_STEPS = ["진단", "설계", "구축", "전수"];
+const PROCESS_STEPS = [
+  { title: "진단", desc: "AI 경영 분석 프로그램 리영솔루션으로 매출·업무 데이터를 정밀 분석합니다." },
+  { title: "설계", desc: "분석 결과를 바탕으로 우리 회사에 맞는 AI 전략을 설계합니다." },
+  { title: "구축", desc: "AI 에이전트·홈페이지·CRM을 직접 구축합니다." },
+  { title: "전수", desc: "사장님이 직접 운영할 수 있도록 활용법을 전수합니다." },
+];
 
 export function Services() {
   return (
@@ -81,8 +86,31 @@ export function Services() {
             </h2>
           </Reveal>
           <p className="mb-8 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-            반복되는 업무를 진단하고, 우리 회사에 맞는 AI 에이전트·홈페이지를 직접 설계·구축한 뒤 활용법까지 전수합니다.
+            AI 경영 분석 프로그램 리영솔루션으로 우리 회사의 문제점과 개선 방향을 진단하고, 맞춤 AI 전략을 설계해 AI 에이전트·홈페이지·CRM까지 직접 구축한 뒤 활용법을 전수합니다.
           </p>
+
+          {/* 리영솔루션 소개 */}
+          <Reveal className="mb-10">
+            <Card className="overflow-hidden border-brand-100 bg-gradient-to-br from-brand-50 to-white p-7 sm:p-8">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand text-white">
+                  <ScanSearch size={26} />
+                </div>
+                <div>
+                  <p className="mb-1 text-xs font-bold uppercase tracking-widest text-brand">AI 경영 분석 프로그램</p>
+                  <h3 className="mb-3 text-xl font-black text-ink-900">리영솔루션</h3>
+                  <p className="mb-4 text-[15px] leading-relaxed text-ink-600">
+                    기업 맞춤 AI 경영 진단 시 리영컴퍼니가 실제로 사용하는 자체 분석 프로그램입니다. 데이터를 기반으로 문제점과 개선 방향, 매출 향상 포인트를 정밀 분석합니다.
+                  </p>
+                  <ul className="grid gap-2 text-sm text-ink-600 sm:grid-cols-3">
+                    <li className="flex items-center gap-2"><Check size={16} className="text-brand" /> 문제점 진단</li>
+                    <li className="flex items-center gap-2"><Check size={16} className="text-brand" /> 개선 방향 도출</li>
+                    <li className="flex items-center gap-2"><Check size={16} className="text-brand" /> 매출 향상 전략 제시</li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          </Reveal>
 
           {/* 진행 경로 트래커 */}
           <div className="relative mb-6 hidden sm:grid sm:grid-cols-4 sm:gap-4">
@@ -95,7 +123,7 @@ export function Services() {
               transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
             />
             {PROCESS_STEPS.map((step, i) => (
-              <div key={step} className="flex items-center justify-center">
+              <div key={step.title} className="flex items-center justify-center">
                 <div
                   className={cn(
                     "z-10 h-3 w-3 shrink-0 rounded-full",
@@ -108,8 +136,8 @@ export function Services() {
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {PROCESS_STEPS.map((step, i) => (
-              <Reveal key={step} delay={i * 0.08}>
-                <Card className="p-5 text-center">
+              <Reveal key={step.title} delay={i * 0.08}>
+                <Card className="h-full p-5 text-center">
                   <p
                     className={cn(
                       "mb-1 text-xs font-bold",
@@ -118,7 +146,8 @@ export function Services() {
                   >
                     STEP {i + 1}
                   </p>
-                  <p className="font-bold text-ink-900">{step}</p>
+                  <p className="mb-1.5 font-bold text-ink-900">{step.title}</p>
+                  <p className="text-xs leading-relaxed text-ink-500">{step.desc}</p>
                 </Card>
               </Reveal>
             ))}

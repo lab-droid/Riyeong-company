@@ -46,7 +46,7 @@ const SERVICE_CARDS = [
   {
     icon: Hammer,
     title: "만들어주기",
-    desc: "AI 업무 자동화 진단부터 맞춤 AI 에이전트·홈페이지 구축까지 함께합니다.",
+    desc: "AI 경영 분석 프로그램 리영솔루션으로 진단하고, 맞춤 AI 전략·CRM 구축까지 함께합니다.",
     to: "/services#consulting",
   },
   {

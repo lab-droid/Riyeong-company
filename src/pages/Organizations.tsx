@@ -66,7 +66,7 @@ export function Organizations() {
             공공기관 · 기업 담당자님께<span className="text-accent">.</span>
           </h1>
           <p className="mt-4 text-lg text-ink-500">
-            진단부터 설계·구축·전수까지, 필요한 행정 서류까지 빠짐없이 챙겨드립니다.
+            AI 경영 분석 프로그램 리영솔루션 진단부터 설계·구축·전수까지, 필요한 행정 서류까지 빠짐없이 챙겨드립니다.
           </p>
         </div>
       </section>
