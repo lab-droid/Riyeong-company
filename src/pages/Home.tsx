@@ -239,12 +239,14 @@ export function Home() {
             <span className="text-brand-200">매출이 오르는 이유를 찾아드립니다</span>
           </h1>
           <motion.p
-            className="mx-auto mt-6 max-w-xl text-lg text-ink-200 sm:text-xl"
+            className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-200 sm:text-xl"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            {SITE.subCopy}
+            AI 경영 분석 <span className="font-bold text-white">리영솔루션</span>으로 진단하고,
+            <br />
+            맞춤 컨설팅으로 <span className="font-bold text-white">성장</span>까지 함께합니다.
           </motion.p>
 
           <motion.div
