@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, Sparkles, User } from "lucide-react";
+import { ArrowRight, Sparkles, TrendingUp, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -21,13 +21,23 @@ export function PortfolioDetail() {
       </div>
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        {item.isPersonalHistory && (
-          <Badge variant="muted" className="mb-4">
-            <User size={12} /> 대표 수행 이력
-          </Badge>
-        )}
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <Badge variant="brand">{item.category}</Badge>
+          {item.isPersonalHistory && (
+            <Badge variant="muted">
+              <User size={12} /> 대표 수행 이력
+            </Badge>
+          )}
+        </div>
         <h1 className="text-2xl font-black text-ink-900 sm:text-3xl">{item.title}</h1>
         <p className="mt-3 text-lg text-ink-500">{item.summary}</p>
+
+        <div className="mt-6 flex items-center gap-3 rounded-2xl border-2 border-accent-100 bg-accent-50 px-5 py-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-500 text-white">
+            <TrendingUp size={20} />
+          </div>
+          <p className="font-bold text-ink-900">{item.highlight}</p>
+        </div>
 
         <Card className="mt-8 p-7">
           <p className="mb-2 text-sm font-bold text-brand">수행 내용</p>
