@@ -9,7 +9,6 @@ import {
   Hammer,
   Landmark,
   LifeBuoy,
-  MapPin,
   ScanSearch,
   ShieldCheck,
   Sparkles,
@@ -75,7 +74,6 @@ const SERVICE_CARDS = [
 const TRUST_ITEMS = [
   { icon: ShieldCheck, label: "사업자 등록 완료" },
   { icon: Clock3, label: "1영업일 이내 회신" },
-  { icon: MapPin, label: "부산 · 전국 출장 가능" },
   { icon: Sparkles, label: "AI 실전 4년차" },
 ];
 
@@ -114,7 +112,7 @@ const heroWord = {
 function HeroScrollHint() {
   const reduceMotion = useReducedMotion();
   return (
-    <div className="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+    <div className="pointer-events-none absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
       <div className="flex h-10 w-6 justify-center rounded-full border-2 border-white/50 pt-2">
         <motion.div
           className="h-2 w-1.5 rounded-full bg-white"
@@ -272,11 +270,11 @@ export function Home() {
       </section>
 
       {/* 신뢰 지표 바 — 히어로와 다음 섹션 경계에 걸치는 카드 */}
-      <div className="relative z-10 mx-auto -mt-8 max-w-5xl px-4 sm:-mt-9 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto -mt-8 max-w-4xl px-4 sm:-mt-9 sm:px-6 lg:px-8">
         <Reveal>
-          <Card className="grid grid-cols-2 divide-y divide-ink-100 overflow-hidden p-0 shadow-xl shadow-ink-900/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+          <Card className="grid grid-cols-3 divide-x divide-ink-100 overflow-hidden p-0 shadow-xl shadow-ink-900/10">
             {TRUST_ITEMS.map((item) => (
-              <div key={item.label} className="flex items-center justify-center gap-2.5 px-4 py-5 text-center sm:flex-col sm:gap-2 sm:py-6">
+              <div key={item.label} className="flex flex-col items-center justify-center gap-2 px-3 py-5 text-center sm:py-6">
                 <item.icon size={20} className="shrink-0 text-brand" />
                 <span className="text-[13px] font-bold text-ink-700 sm:text-sm">{item.label}</span>
               </div>
