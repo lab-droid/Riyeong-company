@@ -27,8 +27,9 @@ export function Portfolio() {
             <Reveal key={item.slug} delay={i * 0.08}>
               <Link to={`/portfolio/${item.slug}`}>
                 <Card className="group flex h-full flex-col p-0 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex h-40 items-center justify-center bg-gradient-to-br from-brand-100 to-brand-50 transition-colors duration-300 group-hover:from-brand-200 group-hover:to-brand-100">
-                    <Sparkles size={36} className="text-brand-300 transition-colors duration-300 group-hover:text-accent-500" />
+                  <div className="relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50 transition-colors duration-300 group-hover:from-brand-200 group-hover:to-brand-100">
+                    <div className="ly-dot-grid pointer-events-none absolute inset-0 text-brand-300/40" />
+                    <Sparkles size={36} className="relative text-brand-300 transition-colors duration-300 group-hover:text-accent-500" />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     {item.isPersonalHistory && (

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type PointerEvent } from "react";
+import { useId, useMemo, useRef, useState, type PointerEvent } from "react";
 import { motion, useInView } from "motion/react";
 import type { MonthlyVisitors } from "@/lib/growth";
 
@@ -36,6 +36,8 @@ export function GrowthChart({
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [showTable, setShowTable] = useState(false);
+  const gradientId = useId();
+  const glowId = useId();
 
   const n = data.length;
   const peakIndex = data.findIndex((d) => d.date === peakDate);
@@ -80,6 +82,20 @@ export function GrowthChart({
           role="img"
           aria-label={`${formatMonth(data[0].date)}부터 ${formatMonth(data[lastIndex].date)}까지 월별 방문자 추이`}
         >
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1E4FD6" stopOpacity="0.32" />
+              <stop offset="100%" stopColor="#1E4FD6" stopOpacity="0" />
+            </linearGradient>
+            <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
           {/* 가로 그리드 + y축 라벨 */}
           {Y_TICKS.map((t) => (
             <g key={t}>
@@ -114,8 +130,7 @@ export function GrowthChart({
           {/* 영역 채우기 */}
           <motion.path
             d={areaPath}
-            fill="#1E4FD6"
-            fillOpacity={0.1}
+            fill={`url(#${gradientId})`}
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 1.1 }}
@@ -126,9 +141,10 @@ export function GrowthChart({
             d={linePath}
             fill="none"
             stroke="#1E4FD6"
-            strokeWidth={2}
+            strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
+            filter={`url(#${glowId})`}
             initial={{ pathLength: 0 }}
             animate={inView ? { pathLength: 1 } : {}}
             transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
@@ -138,13 +154,23 @@ export function GrowthChart({
           <motion.circle
             cx={xFor(peakIndex, n)}
             cy={yFor(data[peakIndex].visitors)}
+            r={8}
+            fill="#1E4FD6"
+            fillOpacity={0.15}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={inView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.4, delay: 1.5 }}
+          />
+          <motion.circle
+            cx={xFor(peakIndex, n)}
+            cy={yFor(data[peakIndex].visitors)}
             r={5}
             fill="#1E4FD6"
             stroke="#fff"
             strokeWidth={2}
             initial={{ scale: 0, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.4, delay: 1.5 }}
+            transition={{ duration: 0.4, delay: 1.55 }}
           />
           <motion.text
             x={xFor(peakIndex, n)}

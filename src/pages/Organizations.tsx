@@ -73,8 +73,9 @@ export function Organizations() {
 
       {/* 서류·지원 */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <Reveal>
-          <h2 className="mb-8 text-center text-2xl font-black text-ink-900">
+        <Reveal className="mb-8 text-center">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">DOCUMENTS</p>
+          <h2 className="text-2xl font-black text-ink-900">
             담당자님이 걱정 없이 진행하시도록<span className="text-accent">.</span>
           </h2>
         </Reveal>
@@ -96,8 +97,9 @@ export function Organizations() {
       {/* 진행 절차 */}
       <section className="bg-ink-50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <Reveal>
-            <h2 className="mb-10 text-center text-2xl font-black text-ink-900">
+          <Reveal className="mb-10 text-center">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">PROCESS</p>
+            <h2 className="text-2xl font-black text-ink-900">
               진행 절차<span className="text-accent">.</span>
             </h2>
           </Reveal>
@@ -147,8 +149,9 @@ export function Organizations() {
 
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <Reveal>
-          <h2 className="mb-8 text-center text-2xl font-black text-ink-900">
+        <Reveal className="mb-8 text-center">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">FAQ</p>
+          <h2 className="text-2xl font-black text-ink-900">
             자주 묻는 질문<span className="text-accent">.</span>
           </h2>
         </Reveal>

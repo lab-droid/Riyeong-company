@@ -18,7 +18,7 @@ export function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/90 shadow-sm shadow-ink-900/[0.02] backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
           <LogoMark size={36} />

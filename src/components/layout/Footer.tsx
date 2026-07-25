@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ShieldCheck } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { SITE } from "@/lib/site";
 
@@ -47,7 +48,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-8 text-xs leading-relaxed text-ink-500">
-          <p>{SITE.name} · 대표: {SITE.ceo} · 사업자등록번호: {SITE.bizNumber}</p>
+          <p className="flex flex-wrap items-center gap-1.5">
+            <ShieldCheck size={13} className="text-brand-300" />
+            {SITE.name} · 대표: {SITE.ceo} · 사업자등록번호: {SITE.bizNumber}
+          </p>
           <p>{SITE.address} · {SITE.phoneDisplay} · {SITE.email}</p>
           <p className="mt-4">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
         </div>

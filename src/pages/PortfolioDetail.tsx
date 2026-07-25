@@ -15,8 +15,9 @@ export function PortfolioDetail() {
   return (
     <>
       <PageMeta title={item.title} description={item.summary} />
-      <div className="flex h-56 items-center justify-center bg-gradient-to-br from-brand-100 to-brand-50 sm:h-72">
-        <Sparkles size={48} className="text-brand-300" />
+      <div className="relative flex h-56 items-center justify-center overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50 sm:h-72">
+        <div className="ly-dot-grid pointer-events-none absolute inset-0 text-brand-300/40" />
+        <Sparkles size={48} className="relative text-brand-300" />
       </div>
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">

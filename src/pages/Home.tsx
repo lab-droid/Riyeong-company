@@ -1,7 +1,22 @@
 import type { PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion } from "motion/react";
-import { ArrowRight, Building2, Hammer, Landmark, LifeBuoy, ScanSearch, Store, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  Clock3,
+  FileCheck2,
+  Hammer,
+  Landmark,
+  LifeBuoy,
+  MapPin,
+  ScanSearch,
+  ShieldCheck,
+  Sparkles,
+  Store,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -56,6 +71,38 @@ const SERVICE_CARDS = [
     to: "/services#care",
   },
 ];
+
+const TRUST_ITEMS = [
+  { icon: ShieldCheck, label: "사업자 등록 완료" },
+  { icon: Clock3, label: "1영업일 이내 회신" },
+  { icon: MapPin, label: "부산 · 전국 출장 가능" },
+  { icon: Sparkles, label: "AI 실전 4년차" },
+];
+
+const WHY_US = [
+  {
+    icon: ScanSearch,
+    title: "데이터 기반 진단",
+    desc: "감이 아니라 리영솔루션의 데이터 분석으로 문제를 짚어냅니다.",
+  },
+  {
+    icon: TrendingUp,
+    title: "실전 검증 경험",
+    desc: "대표가 비전공 상태로 AI만 활용해 사이트를 직접 성장시킨 경험을 그대로 적용합니다.",
+  },
+  {
+    icon: FileCheck2,
+    title: "투명한 프로세스",
+    desc: "견적서·제안서·계약서까지, 절차와 서류를 빠짐없이 챙깁니다.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "구축 이후에도 지속 관리",
+    desc: "만들고 끝나는 게 아니라, 월 단위로 관리하며 함께 갑니다.",
+  },
+];
+
+const STAT_ICONS = [TrendingUp, Users, Sparkles, Clock3];
 
 const HERO_LINE_1 = "물고기를 잡아주는 대행이 아니라,".split(" ");
 
@@ -136,6 +183,7 @@ export function Home() {
       <section className="relative overflow-hidden bg-ink-950" onPointerMove={heroGlow.onPointerMove}>
         <div className="ly-aurora-a pointer-events-none absolute -top-24 right-0 h-[32rem] w-[32rem] rounded-full bg-brand-500/40 blur-3xl" />
         <div className="ly-aurora-b pointer-events-none absolute bottom-0 left-0 h-[26rem] w-[26rem] rounded-full bg-accent-500/25 blur-3xl" />
+        <div className="ly-noise pointer-events-none absolute inset-0 opacity-60 mix-blend-overlay" />
         <motion.div className="pointer-events-none absolute inset-0" style={{ background: heroGlow.background }} />
 
         {/* 로고의 '길'을 잇는 장식 경로 */}
@@ -223,9 +271,24 @@ export function Home() {
         <HeroScrollHint />
       </section>
 
+      {/* 신뢰 지표 바 — 히어로와 다음 섹션 경계에 걸치는 카드 */}
+      <div className="relative z-10 mx-auto -mt-8 max-w-5xl px-4 sm:-mt-9 sm:px-6 lg:px-8">
+        <Reveal>
+          <Card className="grid grid-cols-2 divide-y divide-ink-100 overflow-hidden p-0 shadow-xl shadow-ink-900/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+            {TRUST_ITEMS.map((item) => (
+              <div key={item.label} className="flex items-center justify-center gap-2.5 px-4 py-5 text-center sm:flex-col sm:gap-2 sm:py-6">
+                <item.icon size={20} className="shrink-0 text-brand" />
+                <span className="text-[13px] font-bold text-ink-700 sm:text-sm">{item.label}</span>
+              </div>
+            ))}
+          </Card>
+        </Reveal>
+      </div>
+
       {/* 고객 유형 분기 */}
-      <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
         <Reveal className="mb-10 text-center">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">FOR YOU</p>
           <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">
             어떤 분이신가요<span className="text-accent">.</span>
           </h2>
@@ -254,6 +317,7 @@ export function Home() {
       {/* 서비스 요약 */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="mb-12 text-center">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">SERVICE</p>
           <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">
             리영컴퍼니가 하는 일<span className="text-accent">.</span>
           </h2>
@@ -279,16 +343,52 @@ export function Home() {
         </div>
       </section>
 
+      {/* 왜 리영컴퍼니인가 */}
+      <section className="relative overflow-hidden border-t border-ink-100">
+        <div className="ly-grid-lines pointer-events-none absolute inset-0 text-ink-100" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <Reveal className="mb-12 text-center">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-brand">WHY RIYEONG</p>
+            <h2 className="text-2xl font-black text-ink-900 sm:text-3xl">
+              리영컴퍼니를 선택하는 이유<span className="text-accent">.</span>
+            </h2>
+          </Reveal>
+          <div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-ink-100 bg-ink-100 sm:grid-cols-2 lg:grid-cols-4">
+            {WHY_US.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.08} className="h-full">
+                <div className="relative flex h-full flex-col gap-4 bg-white p-8">
+                  <span className="text-4xl font-black text-ink-100">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand">
+                    <w.icon size={20} />
+                  </div>
+                  <div>
+                    <h3 className="mb-1.5 font-bold text-ink-900">{w.title}</h3>
+                    <p className="text-sm leading-relaxed text-ink-500">{w.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 대표 소개 요약 */}
       <section className="bg-ink-50">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 md:grid-cols-[220px_1fr] md:items-center lg:px-8">
           <Reveal>
-            <div className="mx-auto w-fit rounded-full bg-gradient-to-br from-brand to-accent-500 p-1 md:mx-0">
-              <img
-                src="/images/profile.jpg"
-                alt={`${SITE.ceo} 대표`}
-                className="h-40 w-40 rounded-full border-4 border-white object-cover object-top"
-              />
+            <div className="relative mx-auto w-fit md:mx-0">
+              <div className="rounded-full bg-gradient-to-br from-brand to-accent-500 p-1">
+                <img
+                  src="/images/profile.jpg"
+                  alt={`${SITE.ceo} 대표`}
+                  className="h-40 w-40 rounded-full border-4 border-white object-cover object-top"
+                />
+              </div>
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-ink-100 bg-white px-3 py-1 text-xs font-black text-ink-900 shadow-md">
+                CEO · {SITE.ceo}
+              </span>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -327,26 +427,34 @@ export function Home() {
       <section className="relative overflow-hidden bg-ink-950 px-4 py-24 sm:px-6 sm:py-28 lg:px-8">
         <div className="ly-aurora-a pointer-events-none absolute -top-32 left-1/4 h-[28rem] w-[28rem] rounded-full bg-brand-500/20 blur-3xl" />
         <div className="ly-aurora-b pointer-events-none absolute -bottom-32 right-1/4 h-[24rem] w-[24rem] rounded-full bg-accent-500/15 blur-3xl" />
+        <div className="ly-noise pointer-events-none absolute inset-0 opacity-50 mix-blend-overlay" />
         <GrowthSparkline />
         <div className="relative mx-auto max-w-7xl">
           <Reveal className="mb-12 text-center">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.25em] text-accent-400">PROOF</p>
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               숫자로 증명합니다<span className="text-accent-400">.</span>
             </h2>
             <p className="mt-3 text-ink-300">말이 아니라, 실제로 확인 가능한 결과와 약속입니다.</p>
           </Reveal>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {STATS.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.08} className="text-center">
-                <p className="text-4xl font-black text-white sm:text-5xl">
-                  <span className="text-accent-100">
-                    <CountUp to={stat.value} />
-                  </span>
-                  {stat.suffix}
-                </p>
-                <p className="mt-2 text-sm font-semibold text-ink-300">{stat.label}</p>
-              </Reveal>
-            ))}
+            {STATS.map((stat, i) => {
+              const StatIcon = STAT_ICONS[i];
+              return (
+                <Reveal key={stat.label} delay={i * 0.08} className="text-center">
+                  <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-accent-400">
+                    {StatIcon && <StatIcon size={20} />}
+                  </div>
+                  <p className="ly-serif-num text-4xl font-black text-white sm:text-5xl">
+                    <span className="text-accent-100">
+                      <CountUp to={stat.value} />
+                    </span>
+                    {stat.suffix}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-ink-300">{stat.label}</p>
+                </Reveal>
+              );
+            })}
           </div>
           <p className="mt-10 text-center text-xs text-ink-400">
             방문자 수치는 대표가 직접 기획·개발·운영 중인 사이트의 애널리틱스 실측 데이터입니다 (2023~2026).{" "}
