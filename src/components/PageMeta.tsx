@@ -15,7 +15,7 @@ export function PageMeta({ title, description }: { title: string; description: s
     tag.setAttribute("content", description);
 
     return () => {
-      document.title = "리영컴퍼니 | AI로, 사장님이 직접 할 수 있게";
+      document.title = "리영컴퍼니 | 데이터로 찾는 매출 성장의 이유";
       if (prevContent !== null) tag.setAttribute("content", prevContent);
     };
   }, [title, description]);

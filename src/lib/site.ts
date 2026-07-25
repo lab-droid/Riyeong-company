@@ -3,7 +3,7 @@
 export const SITE = {
   name: "리영컴퍼니",
   oneLiner: "물고기를 잡아주는 대행이 아니라, 스스로 잡을 수 있게 만드는 회사",
-  subCopy: "AI로, 사장님이 직접 할 수 있게",
+  subCopy: "AI 경영 분석 리영솔루션으로 진단하고, 맞춤 컨설팅으로 성장까지 함께합니다.",
   ceo: "허예령",
   region: "부산",
   bizNumber: "521-05-03741",

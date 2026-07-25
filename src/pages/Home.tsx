@@ -104,7 +104,7 @@ const WHY_US = [
 
 const STAT_ICONS = [TrendingUp, Users, Sparkles, Clock3];
 
-const HERO_LINE_1 = "물고기를 잡아주는 대행이 아니라,".split(" ");
+const HERO_LINE_1 = "감이 아니라 데이터로,".split(" ");
 
 const heroWord = {
   hidden: { opacity: 0, y: 14 },
@@ -176,7 +176,7 @@ export function Home() {
   return (
     <>
       <PageMeta
-        title="AI로, 사장님이 직접 할 수 있게"
+        title="데이터로 찾는 매출 성장의 이유"
         description="리영컴퍼니는 AI 경영 분석 프로그램 리영솔루션으로 소상공인과 기업을 진단하고, AI 맞춤 경영 컨설팅으로 문제를 개선해 성장시키는 AI 경영컨설팅 회사입니다."
       />
       {/* 히어로 */}
@@ -238,7 +238,7 @@ export function Home() {
               ))}
             </motion.span>
             <br />
-            <span className="text-brand-200">스스로 잡을 수 있게 만드는 회사</span>
+            <span className="text-brand-200">매출이 오르는 이유를 찾아드립니다</span>
           </h1>
           <motion.p
             className="mx-auto mt-6 max-w-xl text-lg text-ink-200 sm:text-xl"
