@@ -1,0 +1,44 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 512 512] /TrimBox [0 0 512 512] /ArtBox [0 0 512 512] /Resources << /Shading << /Sh0 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 512 >>
+stream
+q
+8 0 0 -8 0 512 cm
+q 15 0 m 49 0 l 57.2845 0 64 6.7155000000000005 64 15 c 64 49 l 64 57.2845 57.2845 64 49 64 c 15 64 l 6.7155000000000005 64 0 57.2845 0 49 c 0 15 l 0 6.7155000000000005 6.7155000000000005 0 15 0 c h W n /Sh0 sh Q
+1 1 1 RG 6.5 w 1 J 1 j
+21 20.5 m 43 20.5 l 43 31.5 l 21 31.5 l 21 42.5 l 37 42.5 l S
+0.9255 0.6157 0.2510 rg
+49.5 42.5 m 49.5 44.7092 47.7092 46.5 45.5 46.5 c 43.2908 46.5 41.5 44.7092 41.5 42.5 c 41.5 40.2908 43.2908 38.5 45.5 38.5 c 47.7092 38.5 49.5 40.2908 49.5 42.5 c h f
+Q
+endstream
+endobj
+5 0 obj
+<< /ShadingType 2 /ColorSpace /DeviceRGB /Coords [0 0 64 64] /Extend [true true] /Function << /FunctionType 2 /Domain [0 1] /C0 [0.1725 0.3255 0.8510] /C1 [0.0941 0.1804 0.4235] /N 1 >> >>
+endobj
+6 0 obj
+<< /Title (Riyeong Company Logo) /Author (Riyeong Company) /Creator (Riyeong Company) >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000296 00000 n 
+0000000858 00000 n 
+0000001062 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R /Info 6 0 R >>
+startxref
+1166
+%%EOF

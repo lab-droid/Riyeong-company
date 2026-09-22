@@ -43,6 +43,7 @@ export function Footer() {
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-ink-500">정책</p>
             <ul className="space-y-2.5 text-sm">
               <li><Link to="/privacy" className="hover:text-white">개인정보처리방침</Link></li>
+              <li><a href="/downloads/riyeong-logo.ai" download="리영컴퍼니_로고.ai" className="hover:text-white">로고 다운로드 (AI)</a></li>
             </ul>
           </div>
         </div>
